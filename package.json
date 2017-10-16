@@ -1,0 +1,27 @@
+{
+  "name": "fileprovider",
+  "version": "1.0.0",
+  "description": "Abstracts file access",
+  "main": "index.js",
+  "scripts": {
+    "build": "jsdoc index.js src/",
+    "start": "echo \"This is a package.\"",
+    "test": "istanbul cover _mocha -- tests/**/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mike-carey/fileprovider.git"
+  },
+  "author": "Mike Carey <michael.r.carey@att.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mike-carey/fileprovider/issues"
+  },
+  "homepage": "https://github.com/mike-carey/fileprovider#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.9.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.0.1"
+  }
+}
