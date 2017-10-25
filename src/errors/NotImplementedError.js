@@ -7,6 +7,11 @@
 
 'use strict'
 
+/**
+ * An "interface" error that states a certain method or property was not overriden
+ *
+ * @class
+ */
 class NotImplementedError extends Error {}
 
 module.exports = NotImplementedError

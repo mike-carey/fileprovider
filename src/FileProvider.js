@@ -10,31 +10,38 @@ const NotImplementedError = require('./errors/NotImplementedError')
 
 
 /**
- * [config description]
- * @type {Object}
+ * A base class for an object which will provide File Storage.
+ *
+ * @class
+ *
+ * @property {Object} config
  */
 class FileProvider {
 
     /**
-     * [config description]
+     * Provides indformation on configurations that can be provided to the provider.
+     *
      * @type {Object}
      */
     static get CONFIG() {
-        throw new NotImplementedError()
+        return {}
     }
 
     /**
-     * [config description]
-     * @type {Object}
+     * A constanct for marking files for appending.
+     *
+     * @type {String}
      */
     static get APPEND() {
         return 'APPEND'
     }
 
     /**
-     * [construct description]
-     * @param  {[type]} options [description]
-     * @return {[type]}         [description]
+     * Creates the FileProvider by iterating over the configurations specified by CONFIG and tossing them into the `this.config` object
+     *
+     * @constructor
+     *
+     * @param  {Object} options The configuration options to be added to the config object
      */
     constructor(options) {
         this.config = {}
@@ -46,34 +53,32 @@ class FileProvider {
     }
 
     /**
-     * [read description]
-     * @param  {[type]}   file    [description]
-     * @param  {[type]}   options [description]
-     * @param  {Function} next    [description]
-     * @return {[type]}           [description]
+     * Reads in file and returns the contents
+     *
+     * @param  {String}   file    The file to read in
+     * @param  {Object}   options Extra options
+     * @param  {Function(err, data)} next    A callback function for asynchronousness taking the form (err, data)
      */
     read(file, options, next) {
         throw new NotImplementedError()
     }
 
     /**
-     * [write description]
-     * @param  {[type]}   file    [description]
-     * @param  {[type]}   data    [description]
-     * @param  {[type]}   options [description]
-     * @param  {Function} next    [description]
-     * @return {[type]}           [description]
+     * Writes contents to a file
+     *
+     * @param  {String}   file    The file to write to
+     * @param  {String}   data    The data to write to the file
+     * @param  {Object}   options Extra options
+     * @param  {Function(err, data)} next    A callback function for asynchronousness taking the form (err, data)
      */
     write(file, data, options, next) {
         throw new NotImplementedError()
     }
 
     /**
-     * [touch description]
-     * @param  {[type]}   file    [description]
-     * @param  {[type]}   options [description]
-     * @param  {Function} next    [description]
-     * @return {[type]}           [description]
+     * Creates a file with nothing in it
+     *
+     * {@see write}
      */
     touch(file, options, next) {
         options = options || {}
@@ -83,12 +88,9 @@ class FileProvider {
     }
 
     /**
-     * [append description]
-     * @param  {[type]}   file    [description]
-     * @param  {[type]}   data    [description]
-     * @param  {[type]}   options [description]
-     * @param  {Function} next    [description]
-     * @return {[type]}           [description]
+     * Adds data onto a file without erasing its contents
+     *
+     * {@see write}
      */
     append(file, data, options, next) {
         options = options || {}
@@ -98,11 +100,11 @@ class FileProvider {
     }
 
     /**
-     * [delete description]
-     * @param  {[type]}   file    [description]
-     * @param  {[type]}   options [description]
-     * @param  {Function} next    [description]
-     * @return {[type]}           [description]
+     * Deletes a file
+     *
+     * @param  {String}   file    The file to delete
+     * @param  {Object}   options Extra options
+     * @param  {Function(err)} next    A callback function for asynchronousness taking the form (err)
      */
     delete(file, options, next) {
         throw new NotImplementedError()

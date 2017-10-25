@@ -712,9 +712,9 @@ mock-fs@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/mock-fs/-/mock-fs-4.4.2.tgz#09dec5313f97095a450be6aa2ad8ab6738d63d6b"
 
-module-exists@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/module-exists/-/module-exists-0.1.1.tgz#55921b412bdf7f77247b668beb9aa6cf893a2085"
+mockery@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/mockery/-/mockery-2.1.0.tgz#5b0aef1ff564f0f8139445e165536c7909713470"
 
 ms@2.0.0:
   version "2.0.0"

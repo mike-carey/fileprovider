@@ -8,6 +8,7 @@ const fs = require('fs')
 const path = require('path')
 const caller = require('caller')
 const mockFs = require('mock-fs')
+const mockery = require('mockery')
 
 const assert = require('chai').assert
 
@@ -51,6 +52,10 @@ module.exports = {
         } catch (e) {
             assert.equal(e.constructor.name, err, message)
         }
+    },
+
+    instanceof: function mustBeInstanceOf(instance, type, message) {
+        assert.equal(typeof instance, type, message)
     }
 
 }

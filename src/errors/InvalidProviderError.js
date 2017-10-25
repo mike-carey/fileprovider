@@ -7,6 +7,11 @@
 
 'use strict'
 
+/**
+ * An error for when a provider does not meet the needed implementations
+ *
+ * @class
+ */
 class InvalidProviderError extends Error {}
 
 module.exports = InvalidProviderError
