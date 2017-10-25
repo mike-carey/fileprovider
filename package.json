@@ -6,7 +6,7 @@
   "scripts": {
     "build": "jsdoc index.js src/",
     "start": "echo \"This is a package.\"",
-    "test": "istanbul cover _mocha -- tests/**/*"
+    "test": "istanbul cover _mocha -- tests/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,10 @@
     "chai": "^4.1.2",
     "eslint": "^4.9.0",
     "istanbul": "^0.4.5",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "mock-fs": "^4.4.2"
+  },
+  "dependencies": {
+    "underscore": "^1.8.3"
   }
 }
