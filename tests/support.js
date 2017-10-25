@@ -5,16 +5,22 @@
 'use strict'
 
 const fs = require('fs')
+const path = require('path')
+const caller = require('caller')
 const mockFs = require('mock-fs')
 
 const assert = require('chai').assert
 
 module.exports = {
 
-    require: function refreshedRequire(module) {
-        delete require.cache[require.resolve(module)]
+    require: function refreshedRequire(mod) {
+        if (!path.isAbsolute(mod)) {
+            mod = path.resolve(path.dirname(caller()), mod)
+        }
 
-        return require(module)
+        delete require.cache[require.resolve(mod)]
+
+        return require(mod)
     },
 
     mock: {

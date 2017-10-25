@@ -6,7 +6,7 @@
   "scripts": {
     "build": "jsdoc index.js src/",
     "start": "echo \"This is a package.\"",
-    "test": "istanbul cover _mocha -- tests/**/*.test.js"
+    "test": "istanbul cover _mocha -- tests/*.test.js tests/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mike-carey/fileprovider#readme",
   "devDependencies": {
+    "caller": "^1.0.1",
     "chai": "^4.1.2",
     "eslint": "^4.9.0",
     "istanbul": "^0.4.5",
@@ -26,6 +27,7 @@
     "mock-fs": "^4.4.2"
   },
   "dependencies": {
+    "module-exists": "^0.1.1",
     "underscore": "^1.8.3"
   }
 }

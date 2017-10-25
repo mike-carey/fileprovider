@@ -6,7 +6,7 @@
 
 const _ = require('underscore')
 
-const NotImplementedError = require('./NotImplementedError')
+const NotImplementedError = require('./errors/NotImplementedError')
 
 
 /**

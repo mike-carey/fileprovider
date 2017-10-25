@@ -1,11 +1,11 @@
 /**
- * @test
+ * @test NotImplementedError
  * @description Tests the NotImplementedError module
  */
 
 'use strict'
 
-const support = require('./support')
+const support = require('../support')
 
 const assert = require('chai').assert
 
@@ -15,7 +15,7 @@ describe('NotImplementedError', () => {
     let NotImplementedError = undefined
 
     beforeEach(() => {
-        NotImplementedError = support.require('../src/NotImplementedError')
+        NotImplementedError = support.require('../../src/errors/NotImplementedError')
     })
 
     it('should throw an error', () => {
