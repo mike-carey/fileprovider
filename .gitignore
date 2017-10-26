@@ -12,6 +12,7 @@
 
 # This will store data and temporary files
 storage/
+docs/
 .env
 
 #----------------------------------------------------------#

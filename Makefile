@@ -37,6 +37,11 @@ lint:
 # lint
 
 
+docs:
+	@$(NPM) run build
+# docs
+
+
 shell:
 	$(NODE) -i -e "let $(VAR) = require('./$(ENTRY)')"
 # shell

@@ -4,7 +4,7 @@
   "description": "Abstracts file access",
   "main": "index.js",
   "scripts": {
-    "build": "jsdoc index.js src/",
+    "build": "jsdoc -d docs/ index.js src/",
     "start": "echo \"This is a package.\"",
     "test": "istanbul cover _mocha -- tests/*.test.js tests/**/*.test.js"
   },
@@ -23,6 +23,7 @@
     "chai": "^4.1.2",
     "eslint": "^4.9.0",
     "istanbul": "^0.4.5",
+    "jsdoc": "^3.5.5",
     "mocha": "^4.0.1",
     "mock-fs": "^4.4.2",
     "mockery": "^2.1.0"
