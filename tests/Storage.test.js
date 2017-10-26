@@ -61,4 +61,12 @@ describe('Storage', () => {
         assert.equal(storage, _storage)
     })
 
+    it('should throw an error if the constructor does not inherit from FileProvider', () => {
+        class Mock {}
+
+        support.throws(() => {
+            let storage = Storage.initialize(Mock)
+        }, 'InvalidProviderError')
+    })
+
 })
