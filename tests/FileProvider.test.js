@@ -5,7 +5,10 @@
 
 'use strict'
 
-let support = require('./support')
+const assert = require('chai').assert
+
+const support = require('./support')
+
 
 describe('FileProvider', () => {
 
@@ -37,6 +40,47 @@ describe('FileProvider', () => {
             mp.write()
         }, 'NotImplementedError')
 
+    })
+
+    it('should set configuration options', () => {
+
+        class MockProvider extends FileProvider {
+            static get CONFIG() {
+                return {
+                    foo: undefined
+                }
+            }
+        }
+
+        let mp = new MockProvider({
+            foo: 'bar'
+        })
+
+        assert.equal(mp.config.foo, 'bar')
+    })
+
+    it('should skip configurations not present', () => {
+
+        class MockProvider extends FileProvider {
+            static get CONFIG() {
+                return {
+                    foo: 'bar',
+                    bar: 'baz'
+                }
+            }
+        }
+
+        let mp = new MockProvider()
+
+        assert.equal(mp.config.foo, 'bar')
+        assert.equal(mp.config.bar, 'baz')
+
+        mp = new MockProvider({
+            foo: 'baz'
+        })
+
+        assert.equal(mp.config.foo, 'baz')
+        assert.equal(mp.config.bar, 'baz')
     })
 
 })

@@ -44,9 +44,15 @@ class FileProvider {
      * @param  {Object} options The configuration options to be added to the config object
      */
     constructor(options) {
+        options = options || {}
+
         this.config = {}
         _.each(this.constructor.CONFIG, (value, key) => {
-            this.config[key] = value
+            if (options.hasOwnProperty(key)) {
+                this.config[key] = options[key]
+            } else {
+                this.config[key] = value
+            }
         })
 
         Object.freeze(this.config)
