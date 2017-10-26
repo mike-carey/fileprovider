@@ -26,19 +26,19 @@ module.exports = {
 
     mock: {
 
-        fs: function mockFs(...args) {
+        fs: function mockFileSystem(...args) {
             let next = args.pop()
 
             // Assert we were given a function as the last parameter
             assert.isFunction(next, "The last parameter for a mock must be a callback function")
 
-            let m = mockFs(...args)
+            mockFs(...args)
 
             // Call the callback
-            next(m)
+            next()
 
             // Restore the filesystem
-            mock.restore()
+            mockFs.restore()
         }
 
     },
