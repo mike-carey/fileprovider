@@ -63,7 +63,28 @@ describe('providers.Local', () => {
     })
 
     it ('append', (done) => {
-        return done()
+        let PRE = '// more data'
+        support.mock.file(PRE, {}, (err, file) => {
+            if (err) {
+                return done(err)
+            }
+
+            (new Local()).append(file, DATA, {}, (err) => {
+                if (err) {
+                    return done(err)
+                }
+
+                fs.readFile(file, (err, data) => {
+                    if (err) {
+                        return done(err)
+                    }
+
+                    assert.equal(data, PRE + DATA)
+
+                    return done()
+                })
+            })
+        })
     })
 
     it('delete', (done) => {

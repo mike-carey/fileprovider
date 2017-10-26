@@ -40,7 +40,7 @@ class Local extends FileProvider {
      * {@see fs.append}
      */
     append(file, data, options, next) {
-        return fs.append(file, data, options, next)
+        return fs.appendFile(file, data, options, next)
     }
 
 }
