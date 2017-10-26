@@ -24,6 +24,7 @@ function moduleExists(name) {
     try {
         require(name)
     } catch (e) {
+        /* istanbul ignore next */
         if (e.code !== 'MODULE_NOT_FOUND' || e.message.indexOf(name) === -1) {
             throw e
         }
@@ -42,15 +43,13 @@ function moduleExists(name) {
 class Storage {
 
     /**
-     * {@see initialize}
+     * Returns the Storage instance
+     *
+     * @constructor
      */
-    constructor(provider, options) {
+    constructor() {
         if (Storage.instance !== undefined) {
             return Storage.instance
-        }
-
-        if (provider) {
-            this.initialize(provider, options)
         }
 
         Storage.instance = this

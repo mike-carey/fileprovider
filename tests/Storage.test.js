@@ -53,4 +53,12 @@ describe('Storage', () => {
         })
     })
 
+    it('should return the previous initialized instance', () => {
+        let storage = Storage.initialize('Local')
+
+        let _storage = new (Storage.constructor)()
+
+        assert.equal(storage, _storage)
+    })
+
 })
