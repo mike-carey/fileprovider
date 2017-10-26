@@ -4,6 +4,7 @@
 
 'use strict'
 
+const fs = require('fs')
 
 const FileProvider = require('../FileProvider')
 
@@ -15,37 +16,31 @@ class Local extends FileProvider {
     }
 
     /**
-     * [read description]
-     * @param  {[type]}   file    [description]
-     * @param  {[type]}   options [description]
-     * @param  {Function} next    [description]
-     * @return {[type]}           [description]
+     * {@see fs.readFile}
      */
     read(file, options, next) {
-        throw new NotImplementedError()
+        return fs.readFile(file, options, next)
     }
 
     /**
-     * [write description]
-     * @param  {[type]}   file    [description]
-     * @param  {[type]}   data    [description]
-     * @param  {[type]}   options [description]
-     * @param  {Function} next    [description]
-     * @return {[type]}           [description]
+     * {@see fs.writeFile}
      */
     write(file, data, options, next) {
-        throw new NotImplementedError()
+        return fs.writeFile(file, data, options, next)
     }
 
     /**
-     * [delete description]
-     * @param  {[type]}   file    [description]
-     * @param  {[type]}   options [description]
-     * @param  {Function} next    [description]
-     * @return {[type]}           [description]
+     * {@see fs.unlink}
      */
     delete(file, options, next) {
-        throw new NotImplementedError()
+        return fs.unlink(file, next)
+    }
+
+    /**
+     * {@see fs.append}
+     */
+    append(file, data, options, next) {
+        return fs.append(file, data, options, next)
     }
 
 }
