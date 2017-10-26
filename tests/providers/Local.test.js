@@ -5,6 +5,7 @@
 
 'use strict'
 
+const fs = require('fs')
 const assert = require('chai').assert
 
 const support = require('../support')
@@ -38,7 +39,27 @@ describe('providers.Local', () => {
     })
 
     it('write', (done) => {
-        return done()
+        support.mock.file('', {}, (err, file) => {
+            if (err) {
+                return done(err)
+            }
+
+            (new Local()).write(file, DATA, {}, (err) => {
+                if (err) {
+                    return done(err)
+                }
+
+                fs.readFile(file, (err, data) => {
+                    if (err) {
+                        return done(err)
+                    }
+
+                    assert.equal(data, DATA)
+
+                    return done()
+                })
+            })
+        })
     })
 
     it ('append', (done) => {
