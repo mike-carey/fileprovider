@@ -5,54 +5,48 @@
 
 'use strict'
 
-const fs = require('fs')
 const assert = require('chai').assert
-const mockery = require('mockery')
 
 const support = require('../support')
 
 describe('providers.Local', () => {
 
-    const FILE = '/tmp/file.txt'
-
     let Local = undefined
 
     beforeEach(() => {
-        mockery.enable({
-            warnOnUnregistered: false
-        })
-
         Local = support.require('../../src/providers/Local')
     })
 
-    afterEach(() => {
-        mockery.disable()
-    })
+    let DATA = '{"foo": "bar"}'
 
-    describe('should wrap fs calls', () => {
+    it ('read', (done) => {
+        support.mock.file(DATA, {}, (err, file) => {
+            if (err) {
+                return done(err)
+            }
 
-        it('read', () => {
-            support.mock.fs(FILE, () => {
-                mockery.registerMock('fs', {
-                    readFile: (file, options, next) => {
-                        assert.equal(file, FILE)
-                    }
-                })
+            (new Local()).read(file, {}, (err, data) => {
+                if (err) {
+                    return done(err)
+                }
+
+                assert.equal(DATA, data)
+
+                return done()
             })
         })
+    })
 
-        it('write', () => {
+    it('write', (done) => {
+        return done()
+    })
 
-        })
+    it ('append', (done) => {
+        return done()
+    })
 
-        it ('append', () => {
-
-        })
-
-        it('delete', () => {
-
-        })
-
+    it('delete', (done) => {
+        return done()
     })
 
 })

@@ -5,6 +5,7 @@
 'use strict'
 
 const fs = require('fs')
+const tmp = require('tmp')
 const path = require('path')
 const caller = require('caller')
 const mockFs = require('mock-fs')
@@ -26,19 +27,26 @@ module.exports = {
 
     mock: {
 
-        fs: function mockFileSystem(...args) {
-            let next = args.pop()
+        file: function mockFile(data, options, next) {
+            tmp.file({
+                mode: '0777',
+                prefix: 'testfile-',
+                postfix: '.tmp'
+            }, (err, path, fd) => {
+                if (err) {
+                    console.error("Could not create temporary file")
+                    return next(err)
+                }
 
-            // Assert we were given a function as the last parameter
-            assert.isFunction(next, "The last parameter for a mock must be a callback function")
+                fs.writeFile(path, data, options, (err) => {
+                    if (err) {
+                        console.error("Could not write data to the temporary file")
+                        return next(err)
+                    }
 
-            mockFs(...args)
-
-            // Call the callback
-            next()
-
-            // Restore the filesystem
-            mockFs.restore()
+                    return next(null, path, fd)
+                })
+            })
         }
 
     },

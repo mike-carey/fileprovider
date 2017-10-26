@@ -26,7 +26,8 @@
     "jsdoc": "^3.5.5",
     "mocha": "^4.0.1",
     "mock-fs": "^4.4.2",
-    "mockery": "^2.1.0"
+    "mockery": "^2.1.0",
+    "tmp": "^0.0.33"
   },
   "dependencies": {
     "underscore": "^1.8.3"
