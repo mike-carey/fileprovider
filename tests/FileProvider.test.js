@@ -41,6 +41,10 @@ describe('FileProvider', () => {
         }, 'NotImplementedError')
 
         support.throws(() => {
+            mp.append()
+        }, 'NotImplementedError')
+
+        support.throws(() => {
             mp.delete()
         }, 'NotImplementedError')
 
