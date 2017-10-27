@@ -82,15 +82,12 @@ class FileProvider {
     }
 
     /**
-     * Creates a file with nothing in it
+     * Creates a file with nothing in it or updates the file's timestamp
      *
      * {@see write}
      */
     touch (file, options, next) {
-        options = options || {}
-        this.constructor.APPEND in options && delete options[this.constructor.APPEND]
-
-        return this.write(file, '', options, next)
+        return this.append(file, '', options, next)
     }
 
     /**
