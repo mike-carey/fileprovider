@@ -10,7 +10,7 @@ const support = require('../support')
 const assert = require('chai').assert
 
 
-describe('InvalidProviderError', () => {
+describe('errors.InvalidProviderError', () => {
 
     let InvalidProviderError = undefined
 
