@@ -1,6 +1,6 @@
 {
   "name": "fileprovider",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Abstracts file access",
   "main": "index.js",
   "scripts": {
