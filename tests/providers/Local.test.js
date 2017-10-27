@@ -114,7 +114,23 @@ describe('providers.Local', () => {
     })
 
     it('delete', (done) => {
-        return done()
+        support.mock.file('', {}, (err, file) => {
+            if (err) {
+                return done(err)
+            }
+
+            assert.isTrue(fs.existsSync(file))
+
+            return (new Local()).delete(file, {}, (err) => {
+                if (err) {
+                    return done(err)
+                }
+
+                assert.isNotTrue(fs.existsSync(file))
+
+                return done()
+            })
+        })
     })
 
 })
