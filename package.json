@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "jsdoc -d docs/ index.js src/",
+    "lint": "eslint --fix .",
     "start": "echo \"This is a package.\"",
     "test": "istanbul cover _mocha -- tests/*.test.js tests/**/*.test.js"
   },

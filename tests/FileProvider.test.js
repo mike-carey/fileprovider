@@ -25,7 +25,7 @@ describe('FileProvider', () => {
         }, 'NotImplementedError')
 
         class MockProvider extends FileProvider {
-            static get CONFIG() {
+            static get CONFIG () {
                 return {}
             }
         }
@@ -45,7 +45,7 @@ describe('FileProvider', () => {
     it('should set configuration options', () => {
 
         class MockProvider extends FileProvider {
-            static get CONFIG() {
+            static get CONFIG () {
                 return {
                     foo: undefined
                 }
@@ -62,7 +62,7 @@ describe('FileProvider', () => {
     it('should skip configurations not present', () => {
 
         class MockProvider extends FileProvider {
-            static get CONFIG() {
+            static get CONFIG () {
                 return {
                     foo: 'bar',
                     bar: 'baz'

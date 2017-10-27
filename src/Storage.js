@@ -20,7 +20,7 @@ const InvalidProviderError = require('./errors/InvalidProviderError')
  * @param  {String} name Name of the module
  * @return {Boolean} true if the module does exist; false otherwise
  */
-function moduleExists(name) {
+function moduleExists (name) {
     try {
         require(name)
     } catch (e) {
@@ -47,7 +47,7 @@ class Storage {
      *
      * @constructor
      */
-    constructor() {
+    constructor () {
         if (Storage.instance !== undefined) {
             return Storage.instance
         }
@@ -65,7 +65,7 @@ class Storage {
      *
      * @throws {InvalidProviderError} If a string is provided and the module does not exist at ./providers/{provider} OR a constructor is provided and does not extend from FileProvider
      */
-    initialize(provider, options) {
+    initialize (provider, options) {
         let self = this
 
         if (_.isString(provider)) {

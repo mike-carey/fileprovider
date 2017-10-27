@@ -18,28 +18,28 @@ class Local extends FileProvider {
     /**
      * {@see fs.readFile}
      */
-    read(file, options, next) {
+    read (file, options, next) {
         return fs.readFile(file, options, next)
     }
 
     /**
      * {@see fs.writeFile}
      */
-    write(file, data, options, next) {
+    write (file, data, options, next) {
         return fs.writeFile(file, data, options, next)
     }
 
     /**
      * {@see fs.unlink}
      */
-    delete(file, options, next) {
+    delete (file, options, next) {
         return fs.unlink(file, next)
     }
 
     /**
      * {@see fs.append}
      */
-    append(file, data, options, next) {
+    append (file, data, options, next) {
         return fs.appendFile(file, data, options, next)
     }
 

@@ -26,7 +26,7 @@ describe('providers.Local', () => {
                 return done(err)
             }
 
-            (new Local()).read(file, {}, (err, data) => {
+            return (new Local()).read(file, {}, (err, data) => {
                 if (err) {
                     return done(err)
                 }
@@ -44,12 +44,12 @@ describe('providers.Local', () => {
                 return done(err)
             }
 
-            (new Local()).write(file, DATA, {}, (err) => {
+            return (new Local()).write(file, DATA, {}, (err) => {
                 if (err) {
                     return done(err)
                 }
 
-                fs.readFile(file, (err, data) => {
+                return fs.readFile(file, (err, data) => {
                     if (err) {
                         return done(err)
                     }
@@ -69,12 +69,12 @@ describe('providers.Local', () => {
                 return done(err)
             }
 
-            (new Local()).append(file, DATA, {}, (err) => {
+            return (new Local()).append(file, DATA, {}, (err) => {
                 if (err) {
                     return done(err)
                 }
 
-                fs.readFile(file, (err, data) => {
+                return fs.readFile(file, (err, data) => {
                     if (err) {
                         return done(err)
                     }
@@ -93,14 +93,14 @@ describe('providers.Local', () => {
                 return done(err)
             }
 
-            fs.unlink(file, (err) => {
+            return fs.unlink(file, (err) => {
                 if (err) {
                     return done(err)
                 }
 
-                assert.isNotTrue(fs.existsSync(file));
+                assert.isNotTrue(fs.existsSync(file))
 
-                (new Local()).touch(file, {}, (err) => {
+                return (new Local()).touch(file, {}, (err) => {
                     if (err) {
                         return done(err)
                     }

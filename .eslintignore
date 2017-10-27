@@ -1,5 +1,14 @@
+###
+#  Files to be ignored by eslint
+##
+
 .bak/
+.tmp/
+
 build/
+coverage/
+docs/
 node_modules/
-tests/
+# tests/
+
 .git*

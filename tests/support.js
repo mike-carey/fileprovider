@@ -15,7 +15,7 @@ const assert = require('chai').assert
 
 module.exports = {
 
-    require: function refreshedRequire(mod) {
+    require: function refreshedRequire (mod) {
         if (!path.isAbsolute(mod)) {
             mod = path.resolve(path.dirname(caller()), mod)
         }
@@ -27,7 +27,7 @@ module.exports = {
 
     mock: {
 
-        file: function mockFile(data, options, next) {
+        file: function mockFile (data, options, next) {
             tmp.file({
                 mode: '0777',
                 prefix: 'testfile-',
@@ -38,7 +38,7 @@ module.exports = {
                     return next(err)
                 }
 
-                fs.writeFile(path, data, options, (err) => {
+                return fs.writeFile(path, data, options, (err) => {
                     if (err) {
                         console.error("Could not write data to the temporary file")
                         return next(err)
@@ -54,7 +54,7 @@ module.exports = {
     /**
      * Prevents the NotImplementedError from being loaded which is not being tested in this suite
      */
-    throws: function mustThrow(fn, err, message) {
+    throws: function mustThrow (fn, err, message) {
         try {
             fn()
         } catch (e) {
@@ -62,7 +62,7 @@ module.exports = {
         }
     },
 
-    instanceof: function mustBeInstanceOf(instance, type, message) {
+    instanceof: function mustBeInstanceOf (instance, type, message) {
         assert.equal(typeof instance, type, message)
     }
 

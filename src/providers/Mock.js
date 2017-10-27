@@ -21,7 +21,7 @@ class Mock extends FileProvider {
      * @param  {Function} next    [description]
      * @return {[type]}           [description]
      */
-    read(file, options, next) {
+    read (file, options, next) {
         return false
     }
 
@@ -33,7 +33,7 @@ class Mock extends FileProvider {
      * @param  {Function} next    [description]
      * @return {[type]}           [description]
      */
-    write(file, data, options, next) {
+    write (file, data, options, next) {
         return false
     }
 
@@ -44,7 +44,7 @@ class Mock extends FileProvider {
      * @param  {Function} next    [description]
      * @return {[type]}           [description]
      */
-    delete(file, options, next) {
+    delete (file, options, next) {
         return false
     }
 

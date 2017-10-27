@@ -23,7 +23,7 @@ class FileProvider {
      *
      * @type {Object}
      */
-    static get CONFIG() {
+    static get CONFIG () {
         return {}
     }
 
@@ -32,7 +32,7 @@ class FileProvider {
      *
      * @type {String}
      */
-    static get APPEND() {
+    static get APPEND () {
         return 'APPEND'
     }
 
@@ -43,7 +43,7 @@ class FileProvider {
      *
      * @param  {Object} options The configuration options to be added to the config object
      */
-    constructor(options) {
+    constructor (options) {
         options = options || {}
 
         this.config = {}
@@ -65,7 +65,7 @@ class FileProvider {
      * @param  {Object}   options Extra options
      * @param  {Function(err, data)} next    A callback function for asynchronousness taking the form (err, data)
      */
-    read(file, options, next) {
+    read (file, options, next) {
         throw new NotImplementedError()
     }
 
@@ -77,7 +77,7 @@ class FileProvider {
      * @param  {Object}   options Extra options
      * @param  {Function(err, data)} next    A callback function for asynchronousness taking the form (err, data)
      */
-    write(file, data, options, next) {
+    write (file, data, options, next) {
         throw new NotImplementedError()
     }
 
@@ -86,7 +86,7 @@ class FileProvider {
      *
      * {@see write}
      */
-    touch(file, options, next) {
+    touch (file, options, next) {
         options = options || {}
         this.constructor.APPEND in options && delete options[this.constructor.APPEND]
 
@@ -98,7 +98,7 @@ class FileProvider {
      *
      * {@see write}
      */
-    append(file, data, options, next) {
+    append (file, data, options, next) {
         options = options || {}
         options[this.constructor.APPEND] = true
 
@@ -112,7 +112,7 @@ class FileProvider {
      * @param  {Object}   options Extra options
      * @param  {Function(err)} next    A callback function for asynchronousness taking the form (err)
      */
-    delete(file, options, next) {
+    delete (file, options, next) {
         throw new NotImplementedError()
     }
 
