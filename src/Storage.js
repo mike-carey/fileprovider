@@ -102,6 +102,7 @@ class Storage {
                 if (IGNORE.indexOf(prop) == -1) {
                     debug('Adding %s property onto this', prop)
                     if (_.isFunction(value)) {
+                        /* istanbul ignore next */
                         self[prop] = function (...args) {
                             return this.instance[prop](...args)
                         }
