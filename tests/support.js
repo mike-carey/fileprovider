@@ -38,13 +38,13 @@ module.exports = {
                     return next(err)
                 }
 
-                return fs.writeFile(path, data, options, (err) => {
+                return fs.writeFile(file, data, options, (err) => {
                     if (err) {
                         console.error("Could not write data to the temporary file")
                         return next(err)
                     }
 
-                    return next(null, path, fd)
+                    return next(null, file, fd)
                 })
             })
         }
