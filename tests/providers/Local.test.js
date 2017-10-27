@@ -87,6 +87,32 @@ describe('providers.Local', () => {
         })
     })
 
+    it ('touch', (done) => {
+        support.mock.file('', {}, (err, file) => {
+            if (err) {
+                return done(err)
+            }
+
+            fs.unlink(file, (err) => {
+                if (err) {
+                    return done(err)
+                }
+
+                assert.isNotTrue(fs.existsSync(file));
+
+                (new Local()).touch(file, {}, (err) => {
+                    if (err) {
+                        return done(err)
+                    }
+
+                    assert.isTrue(fs.existsSync(file))
+
+                    return done()
+                })
+            })
+        })
+    })
+
     it('delete', (done) => {
         return done()
     })
