@@ -53,6 +53,10 @@ class Storage {
         }
 
         Storage.instance = this
+
+        if (process.env.STORAGE_PROVDER) {
+            this.initialize(process.env.STORAGE_PROVDER)
+        }
     }
 
     /**
