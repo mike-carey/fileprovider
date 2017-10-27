@@ -40,6 +40,10 @@ describe('FileProvider', () => {
             mp.write()
         }, 'NotImplementedError')
 
+        support.throws(() => {
+            mp.delete()
+        }, 'NotImplementedError')
+
     })
 
     it('should set configuration options', () => {
