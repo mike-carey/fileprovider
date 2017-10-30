@@ -32,7 +32,7 @@ module.exports = {
                 mode: '0777',
                 prefix: 'testfile-',
                 postfix: '.tmp'
-            }, (err, path, fd) => {
+            }, (err, file, fd) => {
                 if (err) {
                     console.error("Could not create temporary file")
                     return next(err)

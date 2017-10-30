@@ -6,6 +6,7 @@
 'use strict'
 
 const fs = require('fs')
+const path = require('path')
 const assert = require('chai').assert
 
 const support = require('../support')
@@ -20,7 +21,7 @@ describe('providers.Local', () => {
 
     let DATA = '{"foo": "bar"}'
 
-    it ('read', (done) => {
+    it ('should read', (done) => {
         support.mock.file(DATA, {}, (err, file) => {
             if (err) {
                 return done(err)
@@ -38,7 +39,7 @@ describe('providers.Local', () => {
         })
     })
 
-    it('write', (done) => {
+    it('should write', (done) => {
         support.mock.file('', {}, (err, file) => {
             if (err) {
                 return done(err)
@@ -62,7 +63,7 @@ describe('providers.Local', () => {
         })
     })
 
-    it ('append', (done) => {
+    it ('should append', (done) => {
         let PRE = '// more data'
         support.mock.file(PRE, {}, (err, file) => {
             if (err) {
@@ -87,7 +88,7 @@ describe('providers.Local', () => {
         })
     })
 
-    it ('touch', (done) => {
+    it ('should touch', (done) => {
         support.mock.file('', {}, (err, file) => {
             if (err) {
                 return done(err)
@@ -113,7 +114,7 @@ describe('providers.Local', () => {
         })
     })
 
-    it('delete', (done) => {
+    it('should delete', (done) => {
         support.mock.file('', {}, (err, file) => {
             if (err) {
                 return done(err)
@@ -131,6 +132,26 @@ describe('providers.Local', () => {
                 return done()
             })
         })
+    })
+
+    describe('resolve', () => {
+
+        it('should not modify absolute file', (done) => {
+            support.mock.file('', {}, (err, file) => {
+                if (err) {
+                    return done(err)
+                }
+
+                assert.equal(file, (new Local()).resolve(file))
+
+                return done()
+            })
+        })
+
+        it('should extend relative file', () => {
+            assert.equal(path.join('./data', 'foo.txt'), (new Local()).resolve('foo.txt'))
+        })
+
     })
 
 })
