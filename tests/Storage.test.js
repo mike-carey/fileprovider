@@ -69,4 +69,15 @@ describe('Storage', () => {
         }, 'InvalidProviderError')
     })
 
+    it('should accept the STORAGE_PROVIDER environment variable', (done) => {
+        support.mock.env('STORAGE_PROVIDER', 'Mock', (next) => {
+            // Refresh object
+            Storage = support.require('../src/Storage')
+
+            assert.equal(Storage.instance.constructor.name, 'Mock')
+
+            return next(done)
+        })
+    })
+
 })

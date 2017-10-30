@@ -54,8 +54,9 @@ class Storage {
 
         Storage.instance = this
 
-        if (process.env.STORAGE_PROVDER) {
-            this.initialize(process.env.STORAGE_PROVDER)
+        if (process.env.STORAGE_PROVIDER) {
+            debug('Found a STORAGE_PROVIDER environment variable: %s', process.env.STORAGE_PROVIDER)
+            this.initialize(process.env.STORAGE_PROVIDER)
         }
     }
 

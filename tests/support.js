@@ -47,6 +47,18 @@ module.exports = {
                     return next(null, file, fd)
                 })
             })
+        },
+
+        env: function mockEnv(name, value, next) {
+            let _env = process.env[name]
+
+            process.env[name] = value
+
+            return next(function done(next) {
+                process.env[name] = _env
+
+                return next()
+            })
         }
 
     },
