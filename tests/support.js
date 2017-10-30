@@ -15,7 +15,7 @@ const assert = require('chai').assert
 
 module.exports = {
 
-    require: function refreshedRequire (mod) {
+    refresh: function refreshedRequire (mod) {
         if (!path.isAbsolute(mod)) {
             mod = path.resolve(path.dirname(caller()), mod)
         }

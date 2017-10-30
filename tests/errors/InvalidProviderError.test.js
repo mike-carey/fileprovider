@@ -15,7 +15,7 @@ describe('errors.InvalidProviderError', () => {
     let InvalidProviderError = undefined
 
     beforeEach(() => {
-        InvalidProviderError = support.require('../../src/errors/InvalidProviderError')
+        InvalidProviderError = support.refresh('../../src/errors/InvalidProviderError')
     })
 
     it('should throw an error', () => {

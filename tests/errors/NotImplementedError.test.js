@@ -15,7 +15,7 @@ describe('errors.NotImplementedError', () => {
     let NotImplementedError = undefined
 
     beforeEach(() => {
-        NotImplementedError = support.require('../../src/errors/NotImplementedError')
+        NotImplementedError = support.refresh('../../src/errors/NotImplementedError')
     })
 
     it('should throw an error', () => {
