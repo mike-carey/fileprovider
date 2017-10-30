@@ -15,7 +15,7 @@ describe('FileProvider', () => {
     let FileProvider = undefined
 
     beforeEach(() => {
-        FileProvider = support.require('../src/FileProvider')
+        FileProvider = support.refresh('../src/FileProvider')
     })
 
     it('should throw implementation errors when not overriden', () => {

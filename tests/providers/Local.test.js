@@ -16,7 +16,7 @@ describe('providers.Local', () => {
     let Local = undefined
 
     beforeEach(() => {
-        Local = support.require('../../src/providers/Local')
+        Local = support.refresh('../../src/providers/Local')
     })
 
     let DATA = '{"foo": "bar"}'

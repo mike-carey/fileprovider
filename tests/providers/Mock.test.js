@@ -14,7 +14,7 @@ describe('providers.Mock', () => {
     let Mock = undefined
 
     beforeEach(() => {
-        Mock = support.require('../../src/providers/Mock')
+        Mock = support.refresh('../../src/providers/Mock')
     })
 
     it ('read', () => {

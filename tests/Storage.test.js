@@ -16,7 +16,7 @@ describe('Storage', () => {
     let Storage = undefined
 
     beforeEach(() => {
-        Storage = support.require('../src/Storage')
+        Storage = support.refresh('../src/Storage')
     })
 
     it('should throw an error if the {string} provider does not exist', () => {
@@ -72,7 +72,7 @@ describe('Storage', () => {
     it('should accept the STORAGE_PROVIDER environment variable', (done) => {
         support.mock.env('STORAGE_PROVIDER', 'Mock', (next) => {
             // Refresh object
-            Storage = support.require('../src/Storage')
+            Storage = support.refresh('../src/Storage')
 
             assert.equal(Storage.instance.constructor.name, 'Mock')
 
