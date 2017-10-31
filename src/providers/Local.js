@@ -30,10 +30,10 @@ class Local extends FileProvider {
      * {@see fs.readFile}
      */
     read (file, options, next) {
-        file = this.resolve(file)
+        let f = this.resolve(file)
 
-        return fs.ensureFile(file, () => {
-            return fs.readFile(file, options, next)
+        return fs.ensureFile(f, () => {
+            return fs.readFile(f, options, next)
         })
     }
 
@@ -41,10 +41,10 @@ class Local extends FileProvider {
      * {@see fs.writeFile}
      */
     write (file, data, options, next) {
-        file = this.resolve(file)
+        let f = this.resolve(file)
 
-        return fs.ensureFile(file, () => {
-            return fs.writeFile(this.resolve(file), data, options, next)
+        return fs.ensureFile(f, () => {
+            return fs.writeFile(f, data, options, next)
         })
     }
 
@@ -52,11 +52,11 @@ class Local extends FileProvider {
      * {@see fs.unlink}
      */
     delete (file, options, next) {
-        file = this.resolve(file)
+        let f = this.resolve(file)
 
-        return fs.pathExists(file, (err, exists) => {
+        return fs.pathExists(f, (err, exists) => {
             if (exists) {
-                return fs.unlink(this.resolve(file), next)
+                return fs.unlink(f, next)
             } else {
                 return next()
             }
@@ -67,9 +67,10 @@ class Local extends FileProvider {
      * {@see fs.append}
      */
     append (file, data, options, next) {
-        file = this.resolve(file)
-        return fs.ensureFile(file, () => {
-            return fs.appendFile(this.resolve(file), data, options, next)
+        let f = this.resolve(file)
+
+        return fs.ensureFile(f, () => {
+            return fs.appendFile(f, data, options, next)
         })
     }
 
