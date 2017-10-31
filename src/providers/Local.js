@@ -19,6 +19,7 @@ class Local extends FileProvider {
     }
 
     resolve(name) {
+        console.log(name)
         if (path.isAbsolute(name)) {
             return name
         }

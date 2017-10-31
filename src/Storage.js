@@ -110,7 +110,7 @@ class Storage {
                         /* istanbul ignore next */
                         self[prop] = function () {
                             let args = _.toArray(arguments)
-                            return this.instance[prop].call(this.instance, args)
+                            return this.instance[prop].apply(this.instance, args)
                         }
                     } else {
                         self[prop] = value
