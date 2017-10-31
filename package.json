@@ -7,7 +7,9 @@
     "build": "jsdoc -d docs/ index.js src/",
     "lint": "eslint --fix .",
     "start": "echo \"This is a package.\"",
-    "test": "istanbul cover _mocha -- tests/*.test.js tests/**/*.test.js"
+    "test": "istanbul cover _mocha -- tests/*.test.js tests/**/*.test.js",
+    "code-climate": "codeclimate-test-reporter < ./coverage/lcov.info",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "caller": "^1.0.1",
     "chai": "^4.1.2",
     "codeclimate-test-reporter": "^0.5.0",
+    "coveralls": "^3.0.0",
     "eslint": "^4.9.0",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.5.5",
