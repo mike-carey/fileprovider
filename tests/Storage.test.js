@@ -70,11 +70,28 @@ describe('Storage', () => {
     })
 
     it('should accept the STORAGE_PROVIDER environment variable', (done) => {
-        support.mock.env('STORAGE_PROVIDER', 'Mock', (next) => {
+        support.mock.env({STORAGE_PROVIDER: 'Mock'}, (next) => {
             // Refresh object
             Storage = support.refresh('../src/Storage')
 
             assert.equal(Storage.instance.constructor.name, 'Mock')
+
+            return next(done)
+        })
+    })
+
+    it('should accept the STORAGE_OPTIONS environment variable', (done) => {
+        const CONFIG = {testing: 'bar'}
+
+        support.mock.env({
+            STORAGE_PROVIDER: 'Mock',
+            STORAGE_OPTIONS: JSON.stringify(CONFIG)
+        }, (next) => {
+            // Refresh object
+            Storage = support.refresh('../src/Storage')
+
+            assert.equal(Storage.instance.constructor.name, 'Mock')
+            assert.deepEqual(Storage.instance.config, CONFIG)
 
             return next(done)
         })

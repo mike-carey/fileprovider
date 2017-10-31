@@ -4,14 +4,16 @@
 
 'use strict'
 
-
+const _ = require('underscore')
 const FileProvider = require('../FileProvider')
 
 
 class Mock extends FileProvider {
 
     static get CONFIG () {
-        return {}
+        return {
+            testing: true
+        }
     }
 
     /**

@@ -56,7 +56,16 @@ class Storage {
 
         if (process.env.STORAGE_PROVIDER) {
             debug('Found a STORAGE_PROVIDER environment variable: %s', process.env.STORAGE_PROVIDER)
-            this.initialize(process.env.STORAGE_PROVIDER)
+
+            let options = {}
+
+            if (process.env.STORAGE_OPTIONS) {
+                options = JSON.parse(process.env.STORAGE_OPTIONS)
+
+                debug('Found a STORAGE_OPTIONS environment variable: %O', options)
+            }
+
+            this.initialize(process.env.STORAGE_PROVIDER, options)
         }
     }
 

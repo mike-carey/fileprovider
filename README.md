@@ -20,7 +20,7 @@ yarn add fileprovider
 ```
 
 ## Usage
-```
+```javascript
 const Storage = require('fileprovider').initialize('Local', {dir: '/tmp'})
 
 Storage.read('/tmp/foo.txt', (err, data) => {
