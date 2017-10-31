@@ -1,6 +1,10 @@
 # File Provider
 Abstracts the file storage into a single module
 
+[![Build Status](https://travis-ci.org/mike-carey/fileprovider.svg?branch=master)](https://travis-ci.org/mike-carey/fileprovider)
+
+
+
 ## Installation
 Using NPM
 ```
@@ -40,3 +44,6 @@ Storage.read('/tmp/foo.txt', (err, data) => {
 
 ## Configuration
 The `STORAGE_PROVIDER` environment variable can be set to define the provider automatically without calling the `initialize` function.
+
+## TODO
+1. Allow initialization configurations through environment
