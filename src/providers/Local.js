@@ -4,7 +4,7 @@
 
 'use strict'
 
-const fs = require('fs')
+const fs = require('fs-extra')
 const path = require('path')
 
 const FileProvider = require('../FileProvider')
@@ -18,8 +18,7 @@ class Local extends FileProvider {
         }
     }
 
-    resolve(name) {
-        console.log(name)
+    resolve (name) {
         if (path.isAbsolute(name)) {
             return name
         }
@@ -31,28 +30,47 @@ class Local extends FileProvider {
      * {@see fs.readFile}
      */
     read (file, options, next) {
-        return fs.readFile(this.resolve(file), options, next)
+        file = this.resolve(file)
+
+        return fs.ensureFile(file, () => {
+            return fs.readFile(file, options, next)
+        })
     }
 
     /**
      * {@see fs.writeFile}
      */
     write (file, data, options, next) {
-        return fs.writeFile(this.resolve(file), data, options, next)
+        file = this.resolve(file)
+
+        return fs.ensureFile(file, () => {
+            return fs.writeFile(this.resolve(file), data, options, next)
+        })
     }
 
     /**
      * {@see fs.unlink}
      */
     delete (file, options, next) {
-        return fs.unlink(this.resolve(file), next)
+        file = this.resolve(file)
+
+        return fs.pathExists(file, (err, exists) => {
+            if (exists) {
+                return fs.unlink(this.resolve(file), next)
+            } else {
+                return next()
+            }
+        })
     }
 
     /**
      * {@see fs.append}
      */
     append (file, data, options, next) {
-        return fs.appendFile(this.resolve(file), data, options, next)
+        file = this.resolve(file)
+        return fs.ensureFile(file, () => {
+            return fs.appendFile(this.resolve(file), data, options, next)
+        })
     }
 
 }

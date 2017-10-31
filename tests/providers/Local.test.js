@@ -154,4 +154,116 @@ describe('providers.Local', () => {
 
     })
 
+    describe('ignore missing directories', () => {
+        function tempNotFile (done) {
+            support.mock.file('', {}, (err, file) => {
+                if (err) {
+                    return done(err)
+                }
+
+                return fs.unlink(file, (err) => {
+                    if (err) {
+                        return done(err)
+                    }
+
+                    assert.isNotTrue(fs.existsSync(file))
+
+                    return done(null, file)
+                })
+            })
+        }
+
+        describe('should create missing directories', () => {
+
+            const DATA = '{"foo": "txt"}'
+
+            it('read', (done) => {
+                tempNotFile((err, file) => {
+                    if (err) {
+                        return done(err)
+                    }
+
+                    return (new Local()).read(file, (err, data) => {
+                        if (err) {
+                            return done(err)
+                        }
+
+                        assert.equal(data, '')
+
+                        return done()
+                    })
+                })
+            })
+
+            it('write', (done) => {
+                tempNotFile((err, file) => {
+                    if (err) {
+                        return done(err)
+                    }
+
+                    return (new Local()).write(file, DATA, (err, data) => {
+                        if (err) {
+                            return done(err)
+                        }
+
+                        return fs.readFile(file, (err, data) => {
+                            if (err) {
+                                return done(err)
+                            }
+
+                            assert.equal(DATA, data)
+
+                            return done()
+                        })
+                    })
+                })
+
+            })
+
+            it('append', (done) => {
+                tempNotFile((err, file) => {
+                    if (err) {
+                        return done(err)
+                    }
+
+                    return (new Local()).append(file, DATA, (err, data) => {
+                        if (err) {
+                            return done(err)
+                        }
+
+                        return fs.readFile(file, (err, data) => {
+                            if (err) {
+                                return done(err)
+                            }
+
+                            assert.equal(DATA, data)
+
+                            return done()
+                        })
+                    })
+                })
+
+            })
+
+            it('delete', (done) => {
+                tempNotFile((err, file) => {
+                    if (err) {
+                        return done(err)
+                    }
+
+                    return (new Local()).delete(file, {}, (err) => {
+                        if (err) {
+                            return done(err)
+                        }
+
+                        assert.isNotTrue(fs.existsSync(file))
+
+                        return done()
+                    })
+                })
+
+            })
+        })
+    })
+
 })

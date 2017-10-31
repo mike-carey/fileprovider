@@ -50,3 +50,4 @@ The `STORAGE_PROVIDER` environment variable can be set to define the provider au
 
 ## TODO
 1. Allow initialization configurations through environment
+2. Shift options if not provided
