@@ -108,8 +108,9 @@ class Storage {
                     debug('Adding %s property onto this', prop)
                     if (_.isFunction(value)) {
                         /* istanbul ignore next */
-                        self[prop] = function (...args) {
-                            return this.instance[prop](...args)
+                        self[prop] = function () {
+                            let args = _.toArray(arguments)
+                            return this.instance[prop].call(this.instance, args)
                         }
                     } else {
                         self[prop] = value
