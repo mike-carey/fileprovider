@@ -19,7 +19,25 @@ describe('providers.Local', () => {
         Local = support.refresh('../../src/providers/Local')
     })
 
-    let DATA = '{"foo": "bar"}'
+    function tempNotFile (done) {
+        support.mock.file('', {}, (err, file) => {
+            if (err) {
+                return done(err)
+            }
+
+            return fs.unlink(file, (err) => {
+                if (err) {
+                    return done(err)
+                }
+
+                assert.isNotTrue(fs.existsSync(file))
+
+                return done(null, file)
+            })
+        })
+    }
+
+    const DATA = '{"foo": "bar"}'
 
     it ('should read', (done) => {
         support.mock.file(DATA, {}, (err, file) => {
@@ -39,7 +57,7 @@ describe('providers.Local', () => {
         })
     })
 
-    it('should write', (done) => {
+    it ('should write', (done) => {
         support.mock.file('', {}, (err, file) => {
             if (err) {
                 return done(err)
@@ -64,7 +82,8 @@ describe('providers.Local', () => {
     })
 
     it ('should append', (done) => {
-        let PRE = '// more data'
+        const PRE = '// more data'
+
         support.mock.file(PRE, {}, (err, file) => {
             if (err) {
                 return done(err)
@@ -155,27 +174,8 @@ describe('providers.Local', () => {
     })
 
     describe('ignore missing directories', () => {
-        function tempNotFile (done) {
-            support.mock.file('', {}, (err, file) => {
-                if (err) {
-                    return done(err)
-                }
-
-                return fs.unlink(file, (err) => {
-                    if (err) {
-                        return done(err)
-                    }
-
-                    assert.isNotTrue(fs.existsSync(file))
-
-                    return done(null, file)
-                })
-            })
-        }
 
         describe('should create missing directories', () => {
-
-            const DATA = '{"foo": "txt"}'
 
             it('read', (done) => {
                 tempNotFile((err, file) => {
@@ -266,4 +266,67 @@ describe('providers.Local', () => {
         })
     })
 
+    it('should work full circle', (done) => {
+        let local = new Local()
+
+        tempNotFile((err, file) => {
+            if (err) {
+                return done(err)
+            }
+
+            return local.touch(file, {}, (err) => {
+                if (err) {
+                    return done(err)
+                }
+
+                assert.isTrue(fs.existsSync(file))
+
+                return local.write(file, DATA, {}, (err) => {
+                    if (err) {
+                        return done(err)
+                    }
+
+                    return fs.readFile(file, (err, data) => {
+                        if (err) {
+                            return done(err)
+                        }
+
+                        assert.equal(DATA, data)
+
+                        return local.read(file, {}, (err, data) => {
+                            if (err) {
+                                return done(err)
+                            }
+
+                            assert.equal(DATA, data)
+
+                            return local.append(file, DATA, {}, (err) => {
+                                if (err) {
+                                    return done(err)
+                                }
+
+                                return fs.readFile(file, (err, data) => {
+                                    if (err) {
+                                        return done(err)
+                                    }
+
+                                    assert.equal(DATA + DATA, data)
+
+                                    return local.delete(file, {}, (err) => {
+                                        if (err) {
+                                            return done(err)
+                                        }
+
+                                        assert.isNotTrue(fs.existsSync(file))
+
+                                        return done()
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
 })
