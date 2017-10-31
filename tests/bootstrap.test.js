@@ -6,3 +6,5 @@
 
 'use strict'
 
+// Ignore warnings for testing
+console.warn = () => {}

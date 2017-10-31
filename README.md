@@ -43,11 +43,24 @@ Storage.read('/tmp/foo.txt', (err, data) => {
 
     console.log(data)
 })
+
+// If the STORAGE_PROVIDER variable is set
+process.env.STORAGE_PROVIDER = 'Local'
+process.env.STORAGE_OPTIONS = '{"root": "/tmp"}'
+const Storage = require('fileprovider')
+
+Storage.read('foo.txt', (err, data) => {
+    if (err) {
+        throw err
+    }
+
+    console.log(data)
+})
 ```
 
 ## Configuration
 The `STORAGE_PROVIDER` environment variable can be set to define the provider automatically without calling the `initialize` function.
+The `STORAGE_OPTIONS` environment variables can be set to define the provider options automatically without calling the `initialize` function.  Only works if the `STORAGE_PROVIDER` environment variable has also been set.
 
 ## TODO
-1. Allow initialization configurations through environment
 2. Shift options if not provided

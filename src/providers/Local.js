@@ -1,5 +1,8 @@
 /**
+ * @module providers.Local
+ * @description The Local file system provider
  *
+ * @author Mike Carey <michael.r.carey@att.net>
  */
 
 'use strict'
@@ -9,15 +12,27 @@ const path = require('path')
 
 const FileProvider = require('../FileProvider')
 
-
+/**
+ * The Local file system provider which will interact with the file system the application is attached to.
+ */
 class Local extends FileProvider {
 
+    /**
+     * {@inheritdoc}
+     */
     static get CONFIG () {
         return {
             root: './data'
         }
     }
 
+    /**
+     * Resolves a path.  If absolute, it simply returns the name back; otherwise, it is prepended with the configured root.
+     *
+     * @param  {String} name The filename to resolve
+     *
+     * @return {String}      The resolved filename
+     */
     resolve (name) {
         if (path.isAbsolute(name)) {
             return name
